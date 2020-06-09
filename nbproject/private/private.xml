@@ -12,26 +12,34 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/Entities/EntityManager.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/MenuState.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/UI/Answer.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/GameCamara.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/World.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/LevelUpManager.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/MainLevel.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/Entities/Static/BookInfo.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/MainLevel/Tiles/RowTile.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/Level2State.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/Level1State.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/GameStateManager.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/Entities/Static/BookPile.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/UtilLoader/MusicPlayer.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/GameState.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/FirstMinigame/WorldGenerator/WorldLibrary.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/QuizState.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/UI/UIImageButton.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/Tilemaps/Assets.java</file>
-            <file>file:/C:/Users/German%20David/Desktop/Last%20Pull/ProyectoVideojuego/src/GameStates/PauseState.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/MainG/GamePanel.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/GameCamara.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/MainLevel/MainLevelUpManager.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/MainLevel.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/LevelUpManager.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/Level2State.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Entities/Creatures/Boss.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Entities/Creatures/MainPlayer.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/SecondMinigame/WorldSpace.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/MainLevel/WorldGenerator/WorldPlat.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/QuizState.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/World.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Entities/Entity.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Entities/Creatures/Player_Joan.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/FirstMinigame/Level1UpManager.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/PauseState.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/FirstMinigame/WorldGenerator/WorldLibrary.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/GameStates/MenuState.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/MainG/Handler.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/UtilLoader/MusicPlayer.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/SecondMinigame/Level2UpManager.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Entities/Creatures/Player.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Tilemaps/Assets.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Entities/EntityManager.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/UI/UIHelper.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/Resources/Worlds/WorldThematic2.txt</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/MainG/GameLauncher.java</file>
+            <file>file:/C:/Users/German%20David/Desktop/Proyecto/ProyectoVideojuego/src/Entities/Static/BookInfo.java</file>
         </group>
     </open-files>
 </project-private>

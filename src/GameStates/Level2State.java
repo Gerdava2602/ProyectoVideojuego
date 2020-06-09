@@ -27,13 +27,14 @@ public class Level2State extends GameState {
     private EntityManager entityManager;
     private Animation background;
     private boolean ya = true;
+    private long timePassed;
+    private long timeDeltaTime;
 
-    
     public Level2State(GameStateManager gsm, Handler handler, String tag) {
         super(gsm);
         this.handler = handler;
         this.levelTag = tag;
-        background= new Animation(50,Assets.spaceBackgroundPlat);
+        background = new Animation(50, Assets.spaceBackgroundPlat);
         entityManager = new EntityManager(handler, this);
         dialogueLoader = new DialogueLoader(handler);
         world = new WorldSpace(entityManager, handler);
@@ -72,7 +73,7 @@ public class Level2State extends GameState {
             ya = !ya;
         }
         //bg.draw(g);
-        g.drawImage(getCurrentFrame(), 0, 0,1080,720,null);
+        g.drawImage(getCurrentFrame(), 0, 0, 1080, 720, null);
         levelManager.render();
         hud.render(g);
     }
@@ -80,7 +81,7 @@ public class Level2State extends GameState {
     @Override
     public void musicControl() {
     }
-    
+
     @Override
     public World getWorld() {
         return world;
@@ -94,8 +95,6 @@ public class Level2State extends GameState {
         auxS.getLevelManager().setFinishedMinigame();
         gsm.reloadState(1);
     }
-
-    
 
     // Indica al levelManager, en este caso, el encargado de Loader y Rellenar el TXT, de rellenar sus datos.
     @Override
@@ -111,5 +110,9 @@ public class Level2State extends GameState {
 
     private Image getCurrentFrame() {
         return background.getCurrentFrame();
+    }
+
+    public GameStateManager getGsm() {
+        return gsm;
     }
 }

@@ -1,6 +1,7 @@
 package GameStates;
 
 import Entities.Creatures.Player_Joan;
+import Entities.EntityManager;
 import FirstMinigame.WorldGenerator.WorldLibrary;
 import MainG.Handler;
 import FirstMinigame.Level1UpManager;
@@ -17,7 +18,9 @@ public class Level1State extends GameState {
     private String path = "Resources/Worlds/World1.txt";
     private Player_Joan joan;
     private Level1UpManager levelManager;
-    private DialogueLoader dialogueLoader;
+    boolean showedTutorial = false;
+    private EntityManager entityManager;
+    private boolean doingQuiz = false;
     private UIManager uimanager;
 
     public Level1State(GameStateManager gsm, Handler handler, String tag) {
@@ -25,18 +28,16 @@ public class Level1State extends GameState {
         this.levelTag = tag;
         this.handler = handler;
         world = new WorldLibrary(this.handler, path, this);
-        dialogueLoader = new DialogueLoader(handler);
-        dialogueLoader.setGameTag(this.levelTag);
+        this.entityManager = this.world.getEntityM();
         uimanager= new UIManager(handler);
         uimanager.addUIObject(new UIHelper(Assets.UIHelperLvl1,5000,230,457,600,253,uimanager));
-        this.levelManager = new Level1UpManager(this, world, dialogueLoader);
+        this.levelManager = new Level1UpManager(this, world, entityManager);
 
         init();
     }
 
     @Override
     public void init() {
-        System.out.println("QUE");
         timePassed = System.currentTimeMillis();
     }
 
@@ -55,15 +56,11 @@ public class Level1State extends GameState {
 
         
         world.update();
+        levelManager.update();
     }
 
     public void setGameFinished() {
-        WorldLibrary auxW = (WorldLibrary) world.cast(levelManager);
-        gsm.getGameStates()[1].getLoadData();
-        MainLevel auxS = (MainLevel) gsm.getGameStates()[1];
-        auxS.getLevelManager().setFinishedMinigame();
-        auxW.setFinished();
-        gsm.reloadState(1);
+        this.gsm.setState(5);
     }
 
     @Override

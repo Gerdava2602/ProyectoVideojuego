@@ -94,6 +94,12 @@ public class PauseState extends GameState implements SaveGame {
                 menu.setImage(Assets.Menu1);
                 quit.setImage(Assets.UILvl1[3]);
                 break;
+            case 5:
+                reanuda.setImage(Assets.UILvl1[5]);
+                options.setImage(Assets.UILvl1[6]);
+                menu.setImage(Assets.Menu1);
+                quit.setImage(Assets.UILvl1[3]);
+                break;
         }
         
         timeDeltaTime = System.currentTimeMillis() - timePassed;
@@ -101,7 +107,7 @@ public class PauseState extends GameState implements SaveGame {
             gsm.reloadState(gsm.getPreviousState());
             System.out.println("Reanuda");
         }
-        if (Window.keyManager.down) {
+        if (Window.keyManager.down && gsm.getPreviousState()!=5) {
             insertData();
         }
     }
@@ -109,6 +115,7 @@ public class PauseState extends GameState implements SaveGame {
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.GREEN);
+        g.drawImage(Assets.pauseUIHelper, 280, 60,null);
         switch(gsm.getPreviousState()){
             case 1:
                 g.drawImage(Assets.pauseBackgroundMain,400,280, 270, 400,null);
@@ -118,6 +125,9 @@ public class PauseState extends GameState implements SaveGame {
                 break;
             case 3:
                 g.drawImage(Assets.pauseBackgroundLvl2,400,280, 270, 400,null);
+                break;
+            case 5:
+                g.drawImage(Assets.pauseBackgroundLvl1,400,280, 270, 400,null);
                 break;
         }
         

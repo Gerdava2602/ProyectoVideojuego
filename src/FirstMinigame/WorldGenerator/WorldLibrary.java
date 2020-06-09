@@ -33,6 +33,9 @@ public class WorldLibrary extends World {
     public static int bookcount = 0;
     private boolean showHistory = true;
     Font textFont = new Font("pixelart", Font.PLAIN, 20);
+    private boolean passed = false;
+    private boolean stopped;
+    long cont=0, last;
     
 
     public WorldLibrary(Handler handler, String path, GameState state) {
@@ -45,17 +48,31 @@ public class WorldLibrary extends World {
         entityM.addEntity(new BookPile(handler, entityM, 2650, 1350, new BookInfo(entityM, Assets.vida, handler, 500, 100, 100, 100, 3)));
         entityM.addEntity(new BookPile(handler, entityM, 1580, 625, new BookInfo(entityM, Assets.vida, handler, 500, 100, 100, 100, 4)));
         entityM.addEntity(new BookPile(handler, entityM, 4590, 2075, new BookInfo(entityM, Assets.vida, handler, 500, 100, 100, 100, 5)));
-        entityM.addEntity(new BookPile(handler, entityM, 5650, 1690, new BookInfo(entityM, Assets.vida, handler, 500, 100, 100, 100, 6)));
-        entityM.addEntity(new BookPile(handler, entityM, 5300, 1450, new BookInfo(entityM, Assets.vida, handler, 500, 100, 100, 100, 7)));
-
+        entityM.addEntity(new BookPile(handler, entityM, 6757, 1650, new BookInfo(entityM, Assets.vida, handler, 500, 100, 100, 100, 6)));
         //entityM.addEntity(new Sentinel(handler, entityM,150,100,40,40));
         loadWorld(path);
         entityM.getJoan().setX(spawnX);
         entityM.getJoan().setY(spawnY);
+        stopped=false;
+        last= System.currentTimeMillis();
     }
 
     public void update() {
         entityM.update();
+        if (checkPositionEndGame()) {
+            if (!passed) {
+                checkBooks();
+                if(stopped){
+                    cont+=System.currentTimeMillis()-last;
+                    last=System.currentTimeMillis();
+                    
+                    if(cont>5000){
+                        stopped=false;
+                        cont=0;
+                    }
+                }
+            }
+        }
     }
 
     public void render(Graphics2D g) {
@@ -70,6 +87,9 @@ public class WorldLibrary extends World {
                 getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamara().getxOffset()),
                         (int) (y * Tile.TILEHEIGHT - handler.getGameCamara().getyOffset()));
             }
+        }
+        if(stopped){
+            g.drawImage(Assets.restrictionLvl1, 200,450,null);
         }
         entityM.render(g);
     }
@@ -119,6 +139,23 @@ public class WorldLibrary extends World {
 
     public void setFinished(){
         entityM.getJoan().setGameFinished(true);
+    }
+    
+    public boolean checkPositionEndGame(){
+        return this.entityM.getJoan().checkEnd();
+    }
+    
+    private void checkBooks(){
+        if(bookcount < 6){
+            entityM.getJoan().setX(entityM.getJoan().getX()-20);
+            stopped=true;
+        }else{
+            passed = true;
+        }
+    }
+
+    public EntityManager getEntityM() {
+        return entityM;
     }
     
 }

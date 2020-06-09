@@ -13,6 +13,8 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.player.MediaPlayer;
+import uk.co.caprica.vlcj.player.MediaPlayerEventAdapter;
 import uk.co.caprica.vlcj.player.MediaPlayerFactory;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.player.embedded.windows.Win32FullScreenStrategy;
@@ -86,11 +88,13 @@ public class Window extends JFrame {
         while (emp.isPlaying()) {
             System.out.println("CORRE");
         }
+        this.getContentPane().setVisible(false);
         GamePanel game = (GamePanel) this.panel;
         game.setAnimation(false);
+        game.getGsm().setState(0);
+        game.setVideoPlayed(false);
         game.init();
     }
-
     // CODIGO DE https http: //www.codeurjava.com/2015/01/java-lire-les-fichiers-multimedia-video.html
     // https://www.jc-mouse.net/proyectos/reproductor-de-video-con-vlcj;
 }

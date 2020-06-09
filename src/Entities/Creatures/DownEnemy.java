@@ -27,7 +27,7 @@ public class DownEnemy extends Enemy {
         super(handler, manager, x, y, width, height, hud);
         this.hud = hud;
         this.setHealth(20);
-        Ymove = (int) (Math.random() * 5 + 2);
+        Ymove = (int) (Math.random() * 100 + 300);
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 104;
@@ -69,12 +69,12 @@ public class DownEnemy extends Enemy {
             if (this.y <= 40) {
                 updownswitch = !updownswitch;
             }
-            this.y -= Ymove;
+            this.y -= Ymove * handler.getDeltaTime();
         } else {
             if (this.y >= 580) {
                 updownswitch = !updownswitch;
             }
-            this.y += Ymove;
+            this.y += Ymove * handler.getDeltaTime();
         }
     }
 

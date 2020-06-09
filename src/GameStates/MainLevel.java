@@ -19,6 +19,7 @@ public class MainLevel extends GameState {
     private MainLevelUpManager levelManager;
     private String path = "Resources/Worlds/WorldThematic1.txt";
     private UIManager uimanager;
+    private boolean showUIHelper;
 
     public MainLevel(GameStateManager gsm, Handler handler, String tag) {
         super(gsm);
@@ -28,8 +29,8 @@ public class MainLevel extends GameState {
         this.levelManager = new MainLevelUpManager(world, entityManager, this);
         uimanager= new UIManager(handler);
         
-        uimanager.addUIObject(new UIHelper(Assets.UIHelperMain,5000,400,30,475,200));
-        
+        uimanager.addUIObject(new UIHelper(Assets.UIHelperMain,15000,400,30,475,200));
+        showUIHelper=true;
         Window.mouse.setUIManager(uimanager);
         init();
     }
@@ -38,14 +39,17 @@ public class MainLevel extends GameState {
     public void init() {
         levelManager.setMusic(AudioLoader.musicPlayListMainLevel);
         timePassed = System.currentTimeMillis();
+        //showUIHelper=true;
     }
 
     @Override
     public void update() {
         if (!gameChanged) {
             world.update();
-            
-                
+            if(showUIHelper)
+                uimanager.tick();
+            else
+               Window.mouse.setUIManager(null);
             levelManager.levelUpManager();
             // Iniciar el menu de pausa
             if (Window.keyManager.pause) {
@@ -58,7 +62,8 @@ public class MainLevel extends GameState {
     public void draw(Graphics2D g) {
         if (!gameChanged) {
             world.render(g);
-            uimanager.render(g);
+            if(showUIHelper)
+                uimanager.render(g);
         }
     }
 
@@ -77,6 +82,7 @@ public class MainLevel extends GameState {
             case 1:
                 return "Resources/Worlds/WorldThematic1.txt";
             case 2:
+                showUIHelper=false;
                 return "Resources/Worlds/WorldThematic2.txt";
             case 3:
                 return "Resources/Worlds/WorldThematic3.txt";
@@ -111,6 +117,7 @@ public class MainLevel extends GameState {
             levelManager.setLevelSwitched(false);
             levelManager.getMusicPlayer().resume();
         }
+        //showUIHelper=false;
         levelManager.loadData();
     }
 

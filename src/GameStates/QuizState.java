@@ -28,14 +28,14 @@ public class QuizState extends GameState {
     Answer ans;
     boolean answered;
     boolean sw;
-    int i,correctas;
+    int i, correctas;
     long wait = 5000, lastTime = 0, actual = 0;
     private Animation openning;
 
     public QuizState(GameStateManager gsm) {
         super(gsm);
         i = 1;
-        correctas=0;
+        correctas = 0;
         answered = false;
         manager = new UIManager(handler);
         sw = true;
@@ -54,7 +54,7 @@ public class QuizState extends GameState {
         });
         manager.addUIObject(a);
 
-        b = new Answer(false, "Falsa", 550, 340,280, 50, new ClickListener() {
+        b = new Answer(false, "Falsa", 550, 340, 280, 50, new ClickListener() {
             @Override
             public void onClick() {
                 if (b.isCorrect()) {
@@ -107,8 +107,10 @@ public class QuizState extends GameState {
     public void update() {
         openning.update();
         if (!answered) {
+            Window.mouse.setUIManager(manager);
             actual = System.currentTimeMillis();
             lastTime = 0;
+            manager.tick();
             switch (i) {
 
                 case 1:
@@ -142,12 +144,19 @@ public class QuizState extends GameState {
                     d.setNewInformation("Correcta");
                     break;
                 default:
+                    WorldLibrary auxW = (WorldLibrary) gsm.getGameStates()[2].getWorld();
+                    gsm.getGameStates()[1].getLoadData();
+                    MainLevel auxS = (MainLevel) gsm.getGameStates()[1];
+                    auxS.getLevelManager().setFinishedMinigame();
+                    auxW.setFinished();
+                    gsm.reloadState(1);
                     break;
             }
             getInput();
         } else {
             lastTime += System.currentTimeMillis() - actual;
             actual = System.currentTimeMillis();
+            Window.mouse.setUIManager(null);
 
             if (lastTime >= wait) {
                 i++;
@@ -160,7 +169,6 @@ public class QuizState extends GameState {
         if (Window.keyManager.pause) {
             pauseState();
         }
-        manager.tick();
     }
 
     public void getInput() {
@@ -177,7 +185,7 @@ public class QuizState extends GameState {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(Assets.Table, 0, 0,null);
+        g.drawImage(Assets.Table, 0, 0, null);
         if (i <= 6) {
 
             if (!answered) {
@@ -192,17 +200,18 @@ public class QuizState extends GameState {
             } else {
                 g.drawImage(Assets.QuizAnswers[i - 1], 130, 70, null);
                 g.setColor(Color.BLACK);
-                if(ans.isCorrect()){
+                if (ans.isCorrect()) {
                     g.drawString("Felicitaciones! Tu respuesta es correcta", 550, 240);
                     correctas++;
-                }else{
+                } else {
                     g.drawString("Lo sentimos. Tu respuesta es incorrecta", 550, 240);
                 }
-                
+
                 sw = true;
             }
-        }else{
-            g.drawString("Obtuviste"+correctas, i, i);
+        } else {
+            g.drawString("Obtuviste" + correctas, i, i);
+            
         }
     }
 

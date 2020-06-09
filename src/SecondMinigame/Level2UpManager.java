@@ -44,7 +44,17 @@ public class Level2UpManager extends LevelUpManager implements SaveGame {
     }
 
     public void init() {
+        if (state.getGsm().getCurrentState() == 3) {
         hiloMusica = new Thread(musicPlayer, "hiloAuxiliarMusica");
+    }
+        flag1 = false;
+        flag2 = false;
+        flag3 = false;
+        endMinigame = false;
+        oneTime = false;
+        phase = 0;
+        ya = true;
+        firstTime = true;
     }
 
     public void levelUpManager(int points, int health) {
@@ -54,12 +64,12 @@ public class Level2UpManager extends LevelUpManager implements SaveGame {
             if (phase == 0) {
                 temporaryWorld.setGenerateEnemys(false);
             }
-            if (points < 10 && !dialogueLoader.getDialogueMark() && phase == 0) {
+            if (points < 5 && !dialogueLoader.getDialogueMark() && phase == 0) {
                 insertData();
                 phase = -1;
                 //moveFasterBackground(state.getBg());
             }
-            if (points >= 25 && !flag1) {
+            if (points >= 5 && !flag1) {
                 // Con esto da inicio a la generacion de los primeros enemigos
                 phase = 1;
                 // Se guarda un Checkpoint 1, rellenando los datos del txt
@@ -69,7 +79,7 @@ public class Level2UpManager extends LevelUpManager implements SaveGame {
                 flag1 = !flag1;
                 temporaryWorld.clearScreenEntities();
                 temporaryWorld.setGenerateEnemys(false);
-            } else if (points >= 35 && !flag2) {
+            } else if (points >= 10 && !flag2) {
                 // Con esto se da inicio a la generacion de los segundos enemigos
                 phase = 2;
                 // Se guarda un Checkpoint 2, rellenando los datos del txt
@@ -79,7 +89,7 @@ public class Level2UpManager extends LevelUpManager implements SaveGame {
                 flag2 = !flag2;
                 temporaryWorld.clearScreenEntities();
                 temporaryWorld.generateEnemys();
-            } else if (points >= 50 && !flag3) {
+            } else if (points >= 15 && !flag3) {
                 //Generacion del boss y solo quedan asteorides
                 phase = 3;
                 // Se guarda un Checkpoint 3, rellenando los datos del txt
@@ -104,11 +114,12 @@ public class Level2UpManager extends LevelUpManager implements SaveGame {
 
     public void update(int points, int health) {
         if (firstTime) {
-            hiloMusica.start();
+            //hiloMusica.start();
             firstTime = false;
         }
         if(Window.keyManager.debug){
             finishLevel();
+            musicPlayer.kill();
         }
         levelUpManager(points, health);
         WorldSpace temporaryWorld = (WorldSpace) world.cast(this);
@@ -138,6 +149,7 @@ public class Level2UpManager extends LevelUpManager implements SaveGame {
 
     @Override
     public void finishLevel() {
+        musicPlayer.kill();
         state.setGameFinished();
     }
 

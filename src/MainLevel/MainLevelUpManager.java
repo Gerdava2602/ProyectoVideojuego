@@ -87,7 +87,7 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
                     if (!flag3) {
                         player.setMaxReturns(1);
                         player.setAmountOfReturns(0);
-                        flag2 = true;
+                        flag3 = true;
                         insertData();
                     }
                     switchLevels(4, worldAux);
@@ -107,7 +107,7 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
                     if (!flag5) {
                         worldAux.switchAllTheTiles();
                         worldAux.changeAnimation();
-                        player.setGravity(500);
+                        player.setGravity(400);
                         player.setMaxReturns(1);
                         player.setAmountOfReturns(0);
                         flag5 = true;
@@ -140,6 +140,8 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
                     break;
                 case 8:
                     if (!flag8) {
+                        worldAux.setTeleporterFalse(true);
+                        worldAux.switchAllTheTiles();
                         player.setMaxReturns(1);
                         player.setAmountOfReturns(0);
                         flag8 = true;
@@ -150,6 +152,7 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
                     break;
                 case 9:
                     if (!flag9) {
+                        worldAux.switchAllTheTiles();
                         player.setMaxReturns(1);
                         player.setAmountOfReturns(0);
                         flag8 = true;
@@ -160,6 +163,7 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
                     break;
                 case 10:
                     if (!flag10) {
+                        worldAux.switchAllTheTiles();
                         player.setMaxReturns(1);
                         player.setAmountOfReturns(0);
                         flag10 = true;
@@ -194,14 +198,14 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
             BufferedReader br = new BufferedReader(new FileReader("saveGeneralFile.txt"));
             br.readLine(); // Salta el GameState
             br.readLine(); // Salta el minijuego
-            player.setX(Integer.parseInt(br.readLine()));
-            player.setY(Integer.parseInt(br.readLine()));
-            player.setyMove(Integer.parseInt(br.readLine()));
-            player.setxMove(Integer.parseInt(br.readLine()));
+            player.setX(Float.parseFloat(br.readLine()));
+            player.setY(Float.parseFloat(br.readLine()));
+            player.setyMove(Float.parseFloat(br.readLine()));
+            player.setxMove(Float.parseFloat(br.readLine()));
             currentButtonsPressed = Integer.parseInt(br.readLine());
             br.close();
         } catch (Exception e) {
-
+            System.out.println(e);
         }
     }
 
@@ -227,7 +231,7 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
             bw.newLine();
             bw.close();
         } catch (Exception e) {
-
+            System.out.println("MY BAD");
         }
     }
 
@@ -244,6 +248,7 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
         int[] position = new int[2];
         if (player.isButtonPressed()) {
             if (player.isInMinigame()) {
+                world.setTeleporterFalse(false);
                 musicPlayer.kill();
                 minigames++;
                 levelSwitched = true;
@@ -263,9 +268,11 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
                     currentWorld++;
                     world.changeMap(state.pathString(currentWorld));
                     world.restoreElevators();
+                    player.setShowStamp(false);
                     position = world.getPositionMap();
                     player.setPosition(position);
                     player.setReturnPoint(null);
+                    player.setAmountOfReturns(0);
                     currentButtonsPressed = 0;
                 }
             }
@@ -274,12 +281,16 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
 
     public void resetLevel(int flagStatus, WorldPlat world) {
         if (player.isReset()) {
+            player.setShowStamp(false);
             currentButtonsPressed = 0;
             world.restoreElevators();
             setFlagFalse(flagStatus);
             position = world.getPositionMap();
             player.setPosition(position);
             player.setReset(false);
+            player.setReturnPoint(null);
+            player.setAmountOfReturns(0);
+
         }
     }
 
@@ -318,6 +329,7 @@ public class MainLevelUpManager extends LevelUpManager implements SaveGame {
     }
 
     public boolean getFinishedGame() {
+        System.out.println(endMinigame);
         return endMinigame;
     }
     

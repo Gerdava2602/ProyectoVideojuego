@@ -19,6 +19,7 @@ public class EntityManager{
     private static MainPlayer mainC;
     private ArrayList<Entity> entities;
     private int Score = 0;
+    private boolean quizState = false;
     Entity player;
 
     /**
@@ -36,13 +37,13 @@ public class EntityManager{
     
     /**
      * Constructor de la clase Entity Manager.
+     * 
      * @param handler Handler del EntityManager.
      * @param state El State del Entity Manager.
      */
     public EntityManager(Handler handler, GameState state) {
         this.handler = handler;
         entities = new ArrayList();
-        
         /**
          * Dependiendo del tag del GameState creará un personaje diferente.
          */
@@ -61,6 +62,7 @@ public class EntityManager{
     
     /**
      * Constructor que solo recibe Handler.
+     * 
      * @param handler Handler del entity manager.
      */
     public EntityManager(Handler handler) {
@@ -70,6 +72,7 @@ public class EntityManager{
     
     /**
      * Metodo que renderiza la entidad.
+     * 
      * @param g graficos
      */
     public void render(Graphics2D g) {
@@ -150,5 +153,12 @@ public class EntityManager{
     public MainPlayer getMainPlayer() {
         return mainC;
     }
-
+    
+    public void verifyEnd() {
+        this.quizState = true;
+    }
+    
+    public boolean getQuizState() {
+        return this.quizState;
+    }
 }

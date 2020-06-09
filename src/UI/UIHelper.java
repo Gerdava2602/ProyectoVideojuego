@@ -100,6 +100,9 @@ public class UIHelper extends UIObject {
                 case 6:
                     g.drawImage(images[i], (int) x, (int) y, null);
                     break;
+                case 7:
+                    g.drawImage(images[i], (int) x, (int) y, null);
+                    break;
                 
             }
         }
